@@ -1,23 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import Form from './Components/Form';
+import List from './Components/List';
+import React, {useState, useEffect} from 'react';
 
 function App() {
+  const [taskComplete, setTaskComplete] = useState(false);
+  const [taskArr, setTaskArr] = useState(() =>{
+
+    const saved = localStorage.getItem("taskArr");
+    const initialValue = JSON.parse(saved);
+    return initialValue || ""
+});
+
+useEffect(() => {
+  localStorage.setItem("taskArr", JSON.stringify(taskArr));
+})
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Form taskArr={taskArr} setTaskArr={setTaskArr} taskComplete={taskComplete}/>
+      <List taskArr={taskArr} setTaskArr={setTaskArr} />
     </div>
   );
 }

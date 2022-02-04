@@ -2,9 +2,13 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.strikeThrough {
+  color: orange;
+  text-decoration: line-through;
+}
+
+.task {
+  color: orange;
 }
 
 @media (prefers-reduced-motion: no-preference) {
